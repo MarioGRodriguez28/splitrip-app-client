@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import Home from "./pages/Home.jsx";
 import Signup from "./pages/auth/Signup";
 import Login from "./pages/auth/Login";
+import Group from "./pages/Group";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
 
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+
+        <Route path="/groups" element={<Group/>} />
 
         <Route path="/error" element={<Error />} />
         <Route path="*" element={<NotFound />} />
