@@ -34,7 +34,7 @@ function Login() {
       console.log(
         "si vemos este console.log significa que el Token fue validado"
       );
-      navigate("/todos");
+      navigate("/");
     } catch (error) {
       console.log(error);
 
