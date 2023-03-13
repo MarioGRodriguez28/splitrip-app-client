@@ -1,23 +1,23 @@
 import service from "./config.services";
 
 const getAllGroupsServices = () => {
-  return service.post("/auth/groups", userCredentials);
+  return service.post("/groups");
 };
 
 const createGroupServices = (newGroup) => {
-  return service.post("/auth/groups", newGroup);
+  return service.post("/groups", newGroup);
 };
 
 const singleGroupServices = (groupId) => {
-  return service.get(`/auth/groups/${groupId}`);
+  return service.get(`/groups/${groupId}`);
 };
 
 const deleteGroupServices = (todoId) => {
-  return service.delete(`/auth/${todoId}`);
+  return service.delete(`/groups/${todoId}`);
 };
 
 const updateGroupServices = (todoId) => {
-  return service.patch(`/auth/${todoId}`);
+  return service.patch(`/groups/${todoId}`);
 };
 
 
