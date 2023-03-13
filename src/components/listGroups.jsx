@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from "react";
 // import {Link} from "react-router-dom";
 import {getAllGroupsServices} from "../services/groups.services";
+import { useNavigate } from "react-router-dom"
 
 
 function ListGroups() {
   const [allGroups, setAllgroups] = useState (null)
   const [isFetching, setIsFetching] = useState (true)
+  const navigate = useNavigate()
 
   useEffect(() => {
     getData();
@@ -19,8 +21,8 @@ function ListGroups() {
       setAllgroups(response.data);
       setIsFetching(false);
     } catch (error) {
-      console.log(error);
-      // aqui deberia haber un navigate("/error")
+        navigate(error);
+      
     }
   };
 

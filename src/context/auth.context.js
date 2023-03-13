@@ -9,7 +9,7 @@ function AuthWrapper(props) {
   const [isFetching, setIsFetching] = useState(true)
 
 
-  // esta funcion que va a contactar al backend, para validar el Token
+ 
   const authenticateUser = async () => {
     setIsFetching(true)
     try {
@@ -29,8 +29,8 @@ function AuthWrapper(props) {
   };
 
   useEffect(() => {
-    authenticateUser() // autentica el token del usuario cuando vista la pagina o refresca la pagina
-  }, []) // componentDidMount
+    authenticateUser() 
+  }, []) 
 
   const passedContext = {
     isLoggedIn,
