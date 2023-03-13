@@ -9,6 +9,8 @@ function Home() {
 			<NavLink to={"/signup"}>Sign up</NavLink>
 			<br />
 			<NavLink to={"/login"}>Log in</NavLink>
+			<br />
+			<NavLink to={"/profile"}>Perfil de usuario</NavLink>
 		</div>
 	);
 }

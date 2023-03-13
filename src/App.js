@@ -8,12 +8,14 @@ import Home from "./pages/Home.jsx";
 import Signup from "./pages/auth/Signup";
 import Login from "./pages/auth/Login";
 import Group from "./pages/Group";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile/>} />
 
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />

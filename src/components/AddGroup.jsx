@@ -1,37 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 
 function AddGroup() {
+
+
+
+
+
   return (
     <div>
-    
-    <h3>Agregar grupo</h3>
+      <h3>Agregar grupo</h3>
 
-      <form >
+      <form>
         <label htmlFor=" ">Nombre del grupo</label>
-        <input
-          type="text"
-          name=" "
-         
-          
-        />
+        <input type="text" name=" " />
         <br />
         <label htmlFor=" ">Miembros</label>
-        <input
-          type="text"
-          name=" "
-       
-         
-        />
+        <input type="text" name=" " />
         <br />
-        
+
         <button type="submit">Agregar</button>
       </form>
-    
-    
-    
-    
     </div>
-  )
+  );
 }
 
-export default AddGroup
+export default AddGroup;
