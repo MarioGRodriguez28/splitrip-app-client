@@ -1,7 +1,7 @@
 import service from "./config.services";
 
 const getAllGroupsServices = () => {
-  return service.post("/groups");
+  return service.get("/groups");
 };
 
 const createGroupServices = (newGroup) => {

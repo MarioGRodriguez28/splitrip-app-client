@@ -1,10 +1,9 @@
-import {useEffect} from "react";
-import {useState} from "react";
+import React, {useState, useEffect} from "react";
+// import {Link} from "react-router-dom";
 import {getAllGroupsServices} from "../services/groups.services";
-import {Link} from "react-router-dom";
-import AddForm from "../components/AddForm";
 
-function listGroups() {
+
+function ListGroups() {
   const [allGroups, setAllgroups] = useState (null)
   const [isFetching, setIsFetching] = useState (true)
 
@@ -31,14 +30,15 @@ function listGroups() {
 
   return (
     <div>
-      <AddForm getData={getData} />
+      
       <hr />
       <h3>Lista de Grupos</h3>
 
-      {allGroups.map((eachTodo) => {
+      {allGroups.map((eachGroup) => {
+        console.log(eachGroup)
         return (
-          <p key={eachTodo._id}>
-            <Link to={`/todos/${eachTodo._id}/details`}>{eachTodo.title}</Link>
+          <p >
+        {eachGroup.groupName}
           </p>
         );
       })}
@@ -46,4 +46,4 @@ function listGroups() {
   );
 }
 
-export default listGroups;
+export default ListGroups;

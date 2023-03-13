@@ -27,8 +27,8 @@ function AddGroup(props) {
       <h3>Agregar grupo</h3>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="groupName ">Nombre del grupo</label>
-        <input type="text" name=" groupName" onChange={handlegroupNameChange}  value={groupName} />
+        <label htmlFor="groupName">Nombre del grupo</label>
+        <input type="text" name=" groupName" onChange={handlegroupNameChange}  value={groupName} required />
         <br />
         {/* <label htmlFor=" ">Miembros</label>
         <input type="text" name=" " />
