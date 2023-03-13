@@ -11,8 +11,7 @@ function GastosForm(props) {
     const handleItemChange = (e) => setItem(e.target.value);
   
     const handleSubmit = async (e) => {
-        setAmmount(0);
-        setItem("")
+       ////
       e.preventDefault();
   
       const newExpenses = {

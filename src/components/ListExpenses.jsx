@@ -37,10 +37,13 @@ function ListExpenses() {
       {allExpenses.map((eachExpense) => {
        
         return (
+            <div>
           <p >
-        {eachExpense.item}
-        {eachExpense.ammount}
+        Concepto: {eachExpense.item}
+        <br />
+        Importe: {eachExpense.ammount}
           </p>
+          </div>
         );
       })}
     </div>
