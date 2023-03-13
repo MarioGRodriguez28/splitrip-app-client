@@ -2,7 +2,7 @@ import "./App.css";
 import {Routes, Route} from "react-router";
 import Error from "./pages/Error";
 import NotFound from "./pages/NotFound";
-
+import DetailsGroups from "./pages/DetailsGroup";
 // pages
 import Home from "./pages/Home.jsx";
 import Signup from "./pages/auth/Signup";
@@ -19,7 +19,7 @@ function App() {
 
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-
+        <Route path="/groups/:groupId" element={<DetailsGroups/>} />
         <Route path="/groups" element={<Group/>} />
 
         <Route path="/error" element={<Error />} />
