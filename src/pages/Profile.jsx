@@ -9,7 +9,6 @@ function Profile() {
     <div> <h3>Perfil de usuario</h3>
     <AddGroup/>
     <ListGroups/>
-   <GastosForm/>
     <ListExpenses/>
     </div>
   )
