@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-// import {Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {getAllGroupsServices} from "../services/groups.services";
 import { useNavigate } from "react-router-dom"
 
@@ -40,7 +40,8 @@ function ListGroups() {
         console.log(eachGroup)
         return (
           <p >
-        {eachGroup.groupName}
+        
+        <Link to={`/groups/${eachGroup._id}`}>{eachGroup.groupName}</Link>
           </p>
         );
       })}
