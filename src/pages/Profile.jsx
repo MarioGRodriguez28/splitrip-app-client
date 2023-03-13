@@ -1,6 +1,7 @@
 import React from 'react'
 import AddGroup from '../components/AddGroup'
 import GastosForm from '../components/GastosForm'
+import ListExpenses from '../components/ListExpenses'
 import ListGroups from '../components/ListGroups'
 
 function Profile() {
@@ -9,7 +10,7 @@ function Profile() {
     <AddGroup/>
     <ListGroups/>
    <GastosForm/>
-    
+    <ListExpenses/>
     </div>
   )
 }
