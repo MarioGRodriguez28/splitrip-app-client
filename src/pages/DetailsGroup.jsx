@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 import { useParams, useNavigate, Link } from "react-router-dom"
-import axios from "axios"
 import { deleteGroupServices, singleGroupServices, updateGroupServices} from "../services/groups.services"
 import ListExpenses from "../components/ListExpenses"
+
 
 function DetailsGroups() {
 
@@ -20,7 +20,7 @@ function DetailsGroups() {
   const getData = async () => {
     try {
       
-      // const response = await axios.get(`http://localhost:5005/api/todo/${params.todoId}`)
+   
       const response = await singleGroupServices(params.groupId)
       console.log(response)
       setSingleGroup(response.data)
@@ -73,6 +73,7 @@ function DetailsGroups() {
           <button>Editar Grupo</button>
         </Link>
         <ListExpenses/>
+      
       </div>
     }
 
