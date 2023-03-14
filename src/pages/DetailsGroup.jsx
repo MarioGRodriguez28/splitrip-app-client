@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams, useNavigate, Link } from "react-router-dom"
 import axios from "axios"
-import { deleteGroupServices, singleGroupServices } from "../services/groups.services"
+import { deleteGroupServices, singleGroupServices, updateGroupServices} from "../services/groups.services"
 import ListExpenses from "../components/ListExpenses"
 
 function DetailsGroups() {
@@ -36,6 +36,18 @@ function DetailsGroups() {
     try {
       
       await deleteGroupServices(params.groupId)
+      navigate("/profile")
+
+    } catch (error) {
+      navigate("/error")
+    }
+
+  }
+  const handleEditGroup = async () => {
+
+    try {
+      
+      await updateGroupServices(params.groupId)
       navigate("/profile")
 
     } catch (error) {

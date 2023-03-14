@@ -9,7 +9,7 @@ import Signup from "./pages/auth/Signup";
 import Login from "./pages/auth/Login";
 import Group from "./pages/Group";
 import Profile from "./pages/Profile";
-
+import GroupEdit from "./pages/GroupEdit";
 function App() {
   return (
     <div className="App">
@@ -21,7 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/groups/:groupId" element={<DetailsGroups/>} />
         <Route path="/groups" element={<Group/>} />
-
+        <Route path="/groups/:groupId/edit" element={<GroupEdit/>} />
         <Route path="/error" element={<Error />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

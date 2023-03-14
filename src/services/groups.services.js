@@ -16,8 +16,8 @@ const deleteGroupServices = (groupId) => {
   return service.delete(`/groups/${groupId}`);
 };
 
-const updateGroupServices = (groupId) => {
-  return service.patch(`/groups/${groupId}`);
+const updateGroupServices = (groupId, updatedGroup) => {
+  return service.patch(`/groups/${groupId}` , updatedGroup);
 };
 
 
