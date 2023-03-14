@@ -32,17 +32,18 @@ function DetailsGroups() {
   }
 
   const handleDeleteGroup = async () => {
-
-    try {
-      
-      await deleteGroupServices(params.groupId)
-      navigate("/profile")
-
-    } catch (error) {
-      navigate("/error")
+    const confirmDelete = window.confirm("¿Estás seguro que deseas borrar el grupo?");
+  
+    if (confirmDelete) {
+      try {
+        await deleteGroupServices(params.groupId);
+        navigate("/profile");
+      } catch (error) {
+        navigate("/error");
+      }
     }
-
-  }
+  };
+  
   const handleEditGroup = async () => {
 
     try {

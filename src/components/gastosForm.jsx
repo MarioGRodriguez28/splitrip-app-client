@@ -41,6 +41,7 @@ function GastosForm(props) {
             name="item"
             onChange={handleItemChange}
             value={item}
+            required
           />
           <br />
           <label htmlFor="ammount">Importe: </label>
