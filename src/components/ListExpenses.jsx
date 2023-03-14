@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 
-import {getAllExpensesService} from "../services/expenses.services";
+import {getAllExpensesService, deleteExpensesService} from "../services/expenses.services";
 import GastosForm from "./GastosForm";
 
 function ListExpenses() {
@@ -26,6 +26,19 @@ function ListExpenses() {
     const handleDataChange = (data) => {
       setAllExpenses(data);
     };
+    const handleDeleteExpense = async (expenseId) => {
+      const shouldDelete = window.confirm("¿Está seguro que desea eliminar este gasto?");
+      if (shouldDelete) {
+        try {
+          await deleteExpensesService(expenseId);
+          const updatedExpenses = allExpenses.filter(expense => expense._id !== expenseId);
+          setAllExpenses(updatedExpenses);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+    
   
     if (isFetching === true) {
       return <h3>... spinners</h3>;
@@ -42,6 +55,8 @@ function ListExpenses() {
               <p key={eachExpense._id}>
                 
                 {eachExpense.item} : {eachExpense.ammount}
+              
+              <button onClick={() => handleDeleteExpense(eachExpense._id)}>   &#10060;  </button>
               </p>
               </div>
             ); 
