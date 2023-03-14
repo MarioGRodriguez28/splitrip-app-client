@@ -2,23 +2,25 @@ import React, { useState } from 'react'
 import { createGroupServices } from '../services/groups.services'
 
 function AddGroup(props) {
-  const [groupName, setgroupName] = useState('')
+  const [groupName, setGroupName] = useState('')
   const [members, setMembers] = useState('')
 
-  const handleGroupNameChange = (e) => setgroupName(e.target.value)
+  const handleGroupNameChange = (e) => setGroupName(e.target.value)
   const handleMembersChange = (e) => setMembers(e.target.value)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
+  
     const newGroup = {
       groupName: groupName,
-      members: members,
+      members: members.split(",").map(member => member.trim())
     }
-
+  
     try {
       const response = await createGroupServices(newGroup)
-      console.log('Hola', newGroup, response)
+      console.log('Hola', response)
+      setGroupName('')
+      setMembers('')
       props.getData()
     } catch (error) {
       console.log(error)
@@ -30,17 +32,17 @@ function AddGroup(props) {
       <h3>Agregar grupo</h3>
 
       <form onSubmit={handleSubmit} key={'_id'}>
-        <label htmlFor="groupName ">Nombre del grupo</label>
+        <label htmlFor="groupName">Nombre del grupo</label>
         <input
           type="text"
-          name=" groupName"
+          name="groupName"
           onChange={handleGroupNameChange}
           value={groupName}
           required
         />
         <br />
-       
-        <label htmlFor="members">Miembros</label>
+
+        <label htmlFor="members">Miembros (separados por coma)</label>
         <input
           type="text"
           name="members"
