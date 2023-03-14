@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
-import { useParams, useNavigate  } from "react-router-dom"
-// import axios from "axios"
+import { useParams, useNavigate, Link } from "react-router-dom"
+import axios from "axios"
 import { deleteGroupServices, singleGroupServices } from "../services/groups.services"
 import ListExpenses from "../components/ListExpenses"
 
@@ -35,8 +35,8 @@ function DetailsGroups() {
 
     try {
       
-      await deleteGroupServices(params.todoId)
-      navigate("/groups")
+      await deleteGroupServices(params.groupId)
+      navigate("/profile")
 
     } catch (error) {
       navigate("/error")
@@ -54,11 +54,12 @@ function DetailsGroups() {
         <h3>GRUPO DE VIAJE : {singleGroup.groupName}</h3>
         
         
-      <ListExpenses/>
-        {/* <button onClick={handleDeleteGroup}>Borrar</button>
+     
+        <button onClick={handleDeleteGroup}>Borrar Grupo</button>
         <Link to={`/groups/${params.groupId}/edit`}>
-          <button>Edit</button>
-        </Link> */}
+          <button>Editar Grupo</button>
+        </Link>
+        <ListExpenses/>
       </div>
     }
 

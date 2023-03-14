@@ -12,12 +12,12 @@ const singleGroupServices = (groupId) => {
   return service.get(`/groups/${groupId}`);
 };
 
-const deleteGroupServices = (todoId) => {
-  return service.delete(`/groups/${todoId}`);
+const deleteGroupServices = (groupId) => {
+  return service.delete(`/groups/${groupId}`);
 };
 
-const updateGroupServices = (todoId) => {
-  return service.patch(`/groups/${todoId}`);
+const updateGroupServices = (groupId) => {
+  return service.patch(`/groups/${groupId}`);
 };
 
 
