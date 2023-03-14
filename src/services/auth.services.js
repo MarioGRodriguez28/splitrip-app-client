@@ -12,4 +12,8 @@ const verifyService = () => {
   return service.get('/auth/verify')
 }
 
-export { signupService, loginService, verifyService }
+const getUsersService = () => {
+  return service.get('/auth/users')
+}
+
+export { signupService, loginService, verifyService, getUsersService }

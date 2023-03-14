@@ -1,24 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { createGroupServices } from '../services/groups.services'
+import {  getUsersService } from '../services/auth.services'
 
 function AddGroup(props) {
   const [groupName, setGroupName] = useState('')
   const [members, setMembers] = useState('')
+  const [userList, setUserList] = useState([])
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const response = await getUsersService()
+      setUserList(response.data)
+    }
+    fetchUsers()
+  }, [])
 
   const handleGroupNameChange = (e) => setGroupName(e.target.value)
   const handleMembersChange = (e) => setMembers(e.target.value)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-  
+
+    const membersArr = members.split(',').map(member => member.trim())
+
+    for (let i = 0; i < membersArr.length; i++) {
+      if (!userList.find(user => user.username === membersArr[i])) {
+        alert(`El usuario ${membersArr[i]} no está registrado`)
+        return
+      }
+    }
+
     const newGroup = {
       groupName: groupName,
-      members: members.split(",").map(member => member.trim())
+      members: membersArr,
     }
-  
+
     try {
       const response = await createGroupServices(newGroup)
-      console.log('Hola', response)
+      console.log(response)
       setGroupName('')
       setMembers('')
       props.getData()
