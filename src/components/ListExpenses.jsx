@@ -33,16 +33,19 @@ function ListExpenses() {
   
     return  (
         <div>
-          <GastosForm getData={getData} setData={handleDataChange} /> {/* Mover aquí */}
-         
+          <GastosForm getData={getData} setData={handleDataChange} /> 
+        
           <h3>Listado de Gastos</h3>
           {allExpenses.map((eachExpense) => {
             return ( <div>
-              <p key={eachExpense.id}>
+               
+              <p key={eachExpense._id}>
+                
                 {eachExpense.item} : {eachExpense.ammount}
               </p>
               </div>
-            );
+            ); 
+            console.log(eachExpense)
           })}
         </div>
       );
