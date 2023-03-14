@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import AddGroup from '../components/AddGroup'
 import { Link } from "react-router-dom";
-
+import { getAllGroupsServices } from "../services/expenses.services";
 
 function Group() {
 
@@ -14,10 +14,11 @@ useEffect(() => {
   
 }, [])
 
-const getData = async () => {
+const getData = async (getAllGroupsServices) => {
+ 
     try {
-
-        const response = await axios.get("http://localhost:5005/api/groups/")
+const response = getAllGroupsServices 
+        // const response = await axios.get("http://localhost:5005/api/groups/")
         console.log(response)
         setAllGroups(response.data)
         setIsFetching(false)
