@@ -45,7 +45,7 @@ function ListExpenses() {
               </p>
               </div>
             ); 
-            console.log(eachExpense)
+          //  console.log(eachExpense)
           })}
         </div>
       );
