@@ -20,10 +20,12 @@ const updateExpensesService = (expensesId, updateExpenses) => {
   return service.delete(`/expenses/${expensesId}`, updateExpenses);
 };
 
+
 export {
   getAllExpensesService,
   createExpensesService,
   singleExpensesService,
   deleteExpensesService,
   updateExpensesService,
+  
 };

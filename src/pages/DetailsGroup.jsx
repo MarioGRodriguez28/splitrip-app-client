@@ -4,6 +4,8 @@ import { deleteGroupServices, singleGroupServices, updateGroupServices} from "..
 import ListExpenses from "../components/ListExpenses"
 
 
+
+
 function DetailsGroups() {
 
   const navigate = useNavigate()
@@ -73,7 +75,8 @@ function DetailsGroups() {
           <button>Editar Grupo</button>
         </Link>
         <ListExpenses/>
-      
+    
+     
       </div>
     }
 
