@@ -68,7 +68,7 @@ function DetailsGroups() {
       : <div>
         <h3>GRUPO DE VIAJE : {singleGroup.groupName}</h3>
         
-        
+        {/* <h5>{singleGroup.members[1]}</h5> */}
      
         <button onClick={handleDeleteGroup}>Borrar Grupo</button>
         <Link to={`/groups/${params.groupId}/edit`}>

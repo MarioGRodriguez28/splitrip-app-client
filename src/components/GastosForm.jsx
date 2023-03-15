@@ -5,6 +5,7 @@ import { createExpensesService } from "../services/expenses.services";
 function GastosForm(props) {
     const [ammount, setAmmount] = useState(0);
     const [item, setItem] = useState("");
+    
   
     const handleAmmountChange = (e) => setAmmount(e.target.value);
     const handleItemChange = (e) => setItem(e.target.value);
@@ -33,7 +34,9 @@ function GastosForm(props) {
   
     return (
       <div>
+        <h4>Gasto Total: </h4>
         <h3>Agregar Gasto</h3>
+        
         <form onSubmit={handleSubmit}>
           <label htmlFor="item">Concepto: </label>
           <input
