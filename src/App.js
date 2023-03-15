@@ -10,18 +10,21 @@ import Login from "./pages/auth/Login";
 import Group from "./pages/Group";
 import Profile from "./pages/Profile";
 import GroupEdit from "./pages/GroupEdit";
+
+
+import IsPrivate from "./components/IsPrivate";
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<Profile/>} />
+        <Route path="/profile" element={<IsPrivate><Profile/></IsPrivate>} />
 
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/groups/:groupId" element={<DetailsGroups/>} />
-        <Route path="/groups" element={<Group/>} />
-        <Route path="/groups/:groupId/edit" element={<GroupEdit/>} />
+        <Route path="/groups" element={<IsPrivate><Group/></IsPrivate>} />
+        <Route path="/groups/:groupId/edit" element={<IsPrivate><GroupEdit/></IsPrivate>} />
         <Route path="/error" element={<Error />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
