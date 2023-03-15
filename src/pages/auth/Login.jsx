@@ -32,7 +32,7 @@ function Login() {
 
       authenticateUser();
       console.log(
-        "si vemos este console.log significa que el Token fue validado"
+        "Token fue validado"
       );
       navigate("/profile");
     } catch (error) {

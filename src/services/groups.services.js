@@ -20,11 +20,15 @@ const updateGroupServices = (groupId, updatedGroup) => {
   return service.patch(`/groups/${groupId}` , updatedGroup);
 };
 
+const getUserGroupsService = (userId) => {
+  return service.get(`/users/${userId}/groups`);
+};
 
 export {
   getAllGroupsServices,
   createGroupServices,
   singleGroupServices,
   deleteGroupServices,
-  updateGroupServices
+  updateGroupServices,
+  getUserGroupsService 
 };
