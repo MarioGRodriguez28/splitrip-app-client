@@ -15,5 +15,8 @@ const verifyService = () => {
 const getUsersService = () => {
   return service.get('/auth/users')
 }
+const updateUserServices = (userId, updatedUser) => {
+  return service.patch(`/user/${userId}` , updatedUser);
+};
 
-export { signupService, loginService, verifyService, getUsersService }
+export { signupService, loginService, verifyService, getUsersService,updateUserServices }
