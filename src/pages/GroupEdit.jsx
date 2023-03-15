@@ -22,7 +22,7 @@ function GroupEdit() {
       
       
       const response = await singleGroupServices(params.groupId)
-      console.log(response)
+      // console.log(response)
 
       setGroupName(response.data.groupName)
      

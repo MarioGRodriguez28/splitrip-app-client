@@ -13,18 +13,20 @@ function GastosForm(props) {
     const handleSubmit = async (e) => {
 
         
-      setAmmount(0);
-      setItem("");
+      // setAmmount(0);
+      // setItem("");
       e.preventDefault();
   
       const newExpenses = {
         ammount,
         item,
+        
       };
-  
+  // console.log(newExpenses)
       try {
         const response = await createExpensesService(newExpenses);
         console.log(response);
+        
         props.getData();
         props.setData(response.data);
       } catch (error) {
@@ -34,10 +36,11 @@ function GastosForm(props) {
   
     return (
       <div>
-        <h4>Gasto Total: </h4>
+       
         <h3>Agregar Gasto</h3>
         
         <form onSubmit={handleSubmit}>
+          <label></label>
           <label htmlFor="item">Concepto: </label>
           <input
             type="text"

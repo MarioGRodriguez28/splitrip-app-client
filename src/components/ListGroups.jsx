@@ -17,7 +17,7 @@ function ListGroups() {
     setIsFetching(true); 
     try {
       const response = await getAllGroupsServices();
-      console.log(response);
+      // console.log(response);
       setAllgroups(response.data);
       setIsFetching(false);
     } catch (error) {
@@ -39,7 +39,7 @@ function ListGroups() {
       {allGroups.map((eachGroup) => {
         console.log(eachGroup)
         return (
-          <p >
+          <p key={eachGroup._id} >
         
         <Link to={`/groups/${eachGroup._id}`}>{eachGroup.groupName}</Link>
           </p>

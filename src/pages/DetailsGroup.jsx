@@ -4,8 +4,6 @@ import { deleteGroupServices, singleGroupServices, updateGroupServices} from "..
 import ListExpenses from "../components/ListExpenses"
 
 
-
-
 function DetailsGroups() {
 
   const navigate = useNavigate()
@@ -24,7 +22,7 @@ function DetailsGroups() {
       
    
       const response = await singleGroupServices(params.groupId)
-      console.log(response)
+      // console.log(response)
       setSingleGroup(response.data)
       setIsFetching(false)
 
@@ -68,15 +66,16 @@ function DetailsGroups() {
       : <div>
         <h3>GRUPO DE VIAJE : {singleGroup.groupName}</h3>
         
-        {/* <h5>{singleGroup.members[1]}</h5> */}
+        {singleGroup.members.map((member, index) => (
+  <p key={index}>{member}</p>
+))}
      
         <button onClick={handleDeleteGroup}>Borrar Grupo</button>
         <Link to={`/groups/${params.groupId}/edit`}>
           <button>Editar Grupo</button>
         </Link>
         <ListExpenses/>
-    
-     
+      
       </div>
     }
 

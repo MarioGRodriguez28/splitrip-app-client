@@ -14,11 +14,11 @@ useEffect(() => {
   
 }, [])
 
-const getData = async (getAllGroupsServices) => {
+const getData = async () => {
  
     try {
-const response = getAllGroupsServices 
-        // const response = await axios.get("http://localhost:5005/api/groups/")
+// const response = getAllGroupsServices 
+        const response = await axios.get("http://localhost:5005/api/groups/")
         console.log(response)
         setAllGroups(response.data)
         setIsFetching(false)
