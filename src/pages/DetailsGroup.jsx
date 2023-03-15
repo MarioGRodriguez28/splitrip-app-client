@@ -44,18 +44,7 @@ function DetailsGroups() {
     }
   };
   
-  // const handleEditGroup = async () => {
-
-  //   try {
-      
-  //     await updateGroupServices(params.groupId)
-  //     navigate("/profile")
-
-  //   } catch (error) {
-  //     navigate("/error")
-  //   }
-
-  // }
+ 
   
   return (
     <div>

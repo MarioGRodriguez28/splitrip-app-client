@@ -127,7 +127,17 @@ function ListExpenses() {
         <tr key={user._id}>
           <td>{user.username}</td>
           <td>{expense}</td>
-          <td>{cuenta} </td>
+          <td>
+          <td>
+          <td>
+          <td>
+  {cuenta > 0 ? <p>a pagar</p> : cuenta < 0 ? <p>a devolver</p> : <p>en paz</p>}
+</td>
+
+</td>
+
+</td>
+</td>
         </tr>
       );
     // }

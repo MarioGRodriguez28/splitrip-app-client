@@ -17,7 +17,7 @@ function ListGroups() {
     setIsFetching(true); 
     try {
       const response = await getAllGroupsServices();
-      // console.log(response);
+      console.log(response);
       setAllgroups(response.data);
       setIsFetching(false);
     } catch (error) {
