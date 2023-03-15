@@ -54,34 +54,10 @@ function ListExpenses() {
     } else {
       return 0;
     }
-
   };
 
   if (isFetching === true) {
     return <h3>... spinners</h3>;
-}
-  
-    return  (
-        <div>
-          <GastosForm getData={getData} setData={handleDataChange} /> 
-        
-          <h3>Listado de Gastos</h3>
-          {allExpenses.map((eachExpense) => {
-            return ( <div>
-               
-              <p key={eachExpense._id}>
-                
-                {eachExpense.item} : {eachExpense.ammount}
-              
-              <button onClick={() => handleDeleteExpense(eachExpense._id)}>   &#10060;  </button>
-              </p>
-              </div>
-            ); 
-          //  console.log(eachExpense)
-          })}
-        </div>
-      );
-      
   }
 
   return (
