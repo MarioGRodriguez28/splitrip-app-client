@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   getAllExpensesService,
   deleteExpensesService,
 } from "../services/expenses.services";
-import {getUsersService} from "../services/auth.services";
+import { getUsersService } from "../services/auth.services";
 import GastosForm from "./GastosForm";
 
 function ListExpenses() {
@@ -61,6 +61,18 @@ function ListExpenses() {
     const user = users && users.find((user) => user._id === id);
     return user ? user.username : "Desconocido";
   };
+  const getExpensesByUser = () => {
+    const expensesByUser = {};
+    allExpenses.forEach((expense) => {
+      const userId = expense.id_user;
+      if (expensesByUser[userId]) {
+        expensesByUser[userId] += expense.ammount;
+      } else {
+        expensesByUser[userId] = expense.ammount;
+      }
+    });
+    return expensesByUser;
+  };
 
   const getTotalExpenses = () => {
     if (allExpenses) {
@@ -75,7 +87,21 @@ function ListExpenses() {
   if (isFetching === true || users === null) {
     return <h3>... spinners</h3>;
   }
-
+  const getTotalUsers = () => {
+    return users.length;
+  };
+  
+  const getCuentaByUser = (userId, expense) => {
+    const totalUsers = getTotalUsers();
+    const remainingUsers = totalUsers  ;
+    const totalExpenses = getTotalExpenses();
+    const userShare = totalExpenses / remainingUsers;
+    const userExpense = expense || 0;
+    const cuenta = userShare - userExpense;
+    return cuenta.toFixed(0);
+  };
+  const expensesByUser = getExpensesByUser();
+ 
   return (
     <div>
       <GastosForm getData={getData} setData={handleDataChange} />
@@ -83,6 +109,32 @@ function ListExpenses() {
         Gasto Total: <strong>{getTotalExpenses()}</strong>
       </p>
       <h3>Listado de Gastos</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Gasto</th>
+          </tr>
+        </thead>
+        
+<tbody>
+  {users.map((user) => {
+    const expense = expensesByUser[user._id] || 0;
+    const cuenta = getCuentaByUser(user._id, expense);
+    // if (expense > 0) {
+      return ( 
+        <tr key={user._id}>
+          <td>{user.username}</td>
+          <td>{expense}</td>
+          <td>{cuenta} </td>
+        </tr>
+      );
+    // }
+    return null;
+  })}
+</tbody>
+      </table>
 
       {allExpenses.map((eachExpense) => {
         return (
@@ -92,7 +144,8 @@ function ListExpenses() {
               {eachExpense.ammount} &#128176;
               <button
                 className="boton1"
-                onClick={() => handleDeleteExpense(eachExpense._id)}>
+                onClick={() => handleDeleteExpense(eachExpense._id)}
+              >
                 <span className="icocor1">&#10060; </span>
               </button>
             </p>

@@ -44,31 +44,31 @@ function DetailsGroups() {
     }
   };
   
-  const handleEditGroup = async () => {
+  // const handleEditGroup = async () => {
 
-    try {
+  //   try {
       
-      await updateGroupServices(params.groupId)
-      navigate("/profile")
+  //     await updateGroupServices(params.groupId)
+  //     navigate("/profile")
 
-    } catch (error) {
-      navigate("/error")
-    }
+  //   } catch (error) {
+  //     navigate("/error")
+  //   }
 
-  }
-
+  // }
+  
   return (
     <div>
-      
+     
 
       { isFetching === true 
       ? <h3>...buscando</h3>
       : <div>
-        <h3>GRUPO DE VIAJE : {singleGroup.groupName}</h3>
-        
-        {singleGroup.members.map((member, index) => (
+        <h3>GRUPO DE VIAJE : {singleGroup.groupName} </h3> Miembros: {singleGroup.members.map((member, index) => (
   <p key={index}>{member}</p>
-))}
+))} 
+        
+
      
         <button onClick={handleDeleteGroup}>Borrar Grupo</button>
         <Link to={`/groups/${params.groupId}/edit`}>
