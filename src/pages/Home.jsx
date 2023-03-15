@@ -19,7 +19,7 @@ function Home() {
 	if (isLoggedIn === true) {
 		return (
 		  <div>
-		  <h3>Bienvenidos a mi "Splitrip"</h3>
+	
 			<NavLink to="/">Home</NavLink>
 			<br />
 			<NavLink to={"/profile"}  end={true}>Perfil de usuario</NavLink>
@@ -30,7 +30,8 @@ function Home() {
 	  } else {
 		return (
 		  <div>
-			<NavLink to="/">Home</NavLink>
+		  	  <h3>Bienvenidos a mi "Splitrip"</h3>
+			{/* <NavLink to="/">Home</NavLink> */}
 			<br />
 			<NavLink to={"/signup"}>Sign up</NavLink>
 			<br />
