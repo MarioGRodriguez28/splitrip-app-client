@@ -3,7 +3,7 @@ import AddGroup from '../components/AddGroup'
 // import GastosForm from '../components/GastosForm'
 // import ListExpenses from '../components/ListExpenses'
 import ListGroups from '../components/ListGroups'
-import UserGroups from '../components/UserGroups'
+
 
 function Profile() {
 
@@ -13,7 +13,7 @@ function Profile() {
     <div> <h3>Perfil de usuario</h3>
     <AddGroup />
     <ListGroups/>
-    <UserGroups/>
+   <AddGroup/>
    
     </div>
   )
