@@ -116,7 +116,7 @@ function ListExpenses() {
           <tr>
             <th>Usuario</th>
             <th>Gasto</th>
-            <th>Deuda</th>
+            <th>Saldo</th>
           </tr>
         </thead>
 
@@ -128,9 +128,9 @@ function ListExpenses() {
             return (
               <tr key={user._id}>
                 <td>{user.username}</td>
-                <td>{expense.toFixed(2)}</td>
-                <td style={{ color: cuenta > 0 ? 'red' : 'green' }}>
-                  {cuenta}{' '}
+                <td>{expense.toFixed(1)}</td>
+                <td style={{ color: cuenta > 0 ? 'red' : 'blue' }}>
+                  {cuenta}{"  :  "}{cuenta > 0 ? "Pagar" : " Recibir"}
                 </td>
               </tr>
             )
@@ -143,7 +143,7 @@ function ListExpenses() {
           <div key={eachExpense._id}>
             <p>
               {getUsernameById(eachExpense.id_user)} : {eachExpense.item} :{' '}
-              {eachExpense.ammount.toFixed(2)} &#128176;{' '}
+              {eachExpense.ammount.toFixed(1)} &#128176;{' '}
               {/* Cambia el número de decimales a 2 */}
               <button
                 className="boton1"
