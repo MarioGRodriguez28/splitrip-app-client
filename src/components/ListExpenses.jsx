@@ -75,10 +75,6 @@ function ListExpenses() {
         </div>
       );
       
-
-  
-
-
-}
+  }
 
 export default ListExpenses;
