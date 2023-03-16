@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import {
-  createGroupServices,
-  getUserGroupsService,
-} from '../services/groups.services'
-import { getUsersService } from '../services/auth.services'
+import { createGroupServices } from '../services/groups.services'
+import {  getUsersService } from '../services/auth.services'
 
 function AddGroup(props) {
   const [groupName, setGroupName] = useState('')
+  const [members, setMembers] = useState('')
   const [userList, setUserList] = useState([])
-  const [userGroups, setUserGroups] = useState([])
-  const [selectedMembers, setSelectedMembers] = useState([])
-  const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -18,28 +13,18 @@ function AddGroup(props) {
       setUserList(response.data)
     }
     fetchUsers()
-
-    const fetchUserGroups = async () => {
-      const response = await getUserGroupsService(props.userId)
-      setUserGroups(response.data)
-    }
-    fetchUserGroups()
-  }, [props.userId])
+  }, [])
 
   const handleGroupNameChange = (e) => setGroupName(e.target.value)
-  const handleMembersChange = (e) =>
-    setSelectedMembers(
-      Array.from(e.target.selectedOptions, (option) => option.value),
-    )
-  const handleSearchTermChange = (e) => setSearchTerm(e.target.value)
+  const handleMembersChange = (e) => setMembers(e.target.value)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const membersArr = selectedMembers.map((member) => member.trim())
+    const membersArr = members.split(',').map(member => member.trim())
 
     for (let i = 0; i < membersArr.length; i++) {
-      if (!userList.find((user) => user.username === membersArr[i])) {
+      if (!userList.find(user => user.username === membersArr[i])) {
         alert(`El usuario ${membersArr[i]} no está registrado`)
         return
       }
@@ -54,7 +39,7 @@ function AddGroup(props) {
       const response = await createGroupServices(newGroup)
       console.log(response)
       setGroupName('')
-      setSelectedMembers([])
+      setMembers('')
       props.getData()
     } catch (error) {
       console.log(error)
@@ -76,45 +61,18 @@ function AddGroup(props) {
         />
         <br />
 
-        <label htmlFor="members">Miembros</label>
+        <label htmlFor="members">Miembros (separados por coma)</label>
         <input
           type="text"
-          placeholder="Buscar miembro"
-          onChange={handleSearchTermChange}
-        />
-        <select
           name="members"
-          multiple
           onChange={handleMembersChange}
-          value={selectedMembers}
-        >
-          {userList
-            .filter((user) =>
-              user.username.toLowerCase().includes(searchTerm.toLowerCase()),
-            )
-            .sort((a, b) => a.username.localeCompare(b.username))
-            .map((user) => (
-              <option key={user._id} value={user.username}>
-                {user.username}
-              </option>
-            ))}
-        </select>
+          value={members}
+          required
+        />
         <br />
 
         <button type="submit">Agregar</button>
       </form>
-
-      <h3>Grupos del usuario</h3>
-      {userGroups.map((group) => (
-        <div key={group._id}>
-          <p>{group.groupName}</p>
-          <ul>
-            {group.members.map((member) => (
-              <li key={member}>{member}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
     </div>
   )
 }
