@@ -5,15 +5,13 @@ import {
 } from '../services/expenses.services'
 import { getUsersService } from '../services/auth.services'
 import GastosForm from './GastosForm'
-
-function ListExpenses() {
+function ListExpenses({ members }) {
   const [allExpenses, setAllExpenses] = useState(null)
   const [isFetching, setIsFetching] = useState(true)
-  const [users, setUsers] = useState(null)
+  const [users, setUsers] = useState(members)
 
   useEffect(() => {
     getData()
-    getUsers()
   }, [])
 
   const getData = async () => {
@@ -22,15 +20,6 @@ function ListExpenses() {
       const response = await getAllExpensesService()
       setAllExpenses(response.data)
       setIsFetching(false)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const getUsers = async () => {
-    try {
-      const response = await getUsersService()
-      setUsers(response.data)
     } catch (error) {
       console.log(error)
     }
@@ -58,7 +47,7 @@ function ListExpenses() {
   }
 
   const getUsernameById = (id) => {
-    const user = users && users.find((user) => user._id === id)
+    const user = users.find((user) => user._id === id)
     return user ? user.username : 'Desconocido'
   }
   const getExpensesByUser = () => {
@@ -130,6 +119,7 @@ function ListExpenses() {
               <tr key={user._id}>
                 <td>{user.username}</td>
                 <td>{expense.toFixed(1)}</td>
+
                 <td style={{ color: cuenta > 0 ? 'red' : 'blue' }}>
                   {cuenta}{"  :  "}{cuenta > 0 ? "Pagar" : " Recibir"}
                 </td>

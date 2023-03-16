@@ -59,7 +59,7 @@ function DetailsGroups() {
           <Link to={`/groups/${params.groupId}/edit`}>
             <button>Editar Grupo</button>
           </Link>
-          <ListExpenses />
+          <ListExpenses members={singleGroup.members} />
         </div>
       )}
     </div>
