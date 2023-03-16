@@ -3,26 +3,23 @@ import {Link} from "react-router-dom";
 import {getAllGroupsServices} from "../services/groups.services";
 import { useNavigate } from "react-router-dom"
 
-
-function ListGroups() {
-  const [allGroups, setAllgroups] = useState (null)
-  const [isFetching, setIsFetching] = useState (true)
+function ListGroups(props) {
+  const [allGroups, setAllgroups] = useState(null)
+  const [isFetching, setIsFetching] = useState(true)
   const navigate = useNavigate()
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [props.shouldUpdate]);
 
   const getData = async () => {
-    setIsFetching(true); 
+    setIsFetching(true);
     try {
       const response = await getAllGroupsServices();
-      // console.log(response);
       setAllgroups(response.data);
       setIsFetching(false);
     } catch (error) {
-        navigate(error);
-      
+      navigate(error);
     }
   };
 
@@ -32,21 +29,19 @@ function ListGroups() {
 
   return (
     <div>
-      
       <hr />
       <h3>Lista de Grupos</h3>
 
       {allGroups.map((eachGroup) => {
-        console.log(eachGroup)
         return (
-          <p key={eachGroup._id} >
-        
-        <Link to={`/groups/${eachGroup._id}`}>{eachGroup.groupName}</Link>
+          <p key={eachGroup._id}>
+            <Link to={`/groups/${eachGroup._id}`}>{eachGroup.groupName}</Link>
           </p>
         );
       })}
     </div>
   );
 }
+
 
 export default ListGroups;
