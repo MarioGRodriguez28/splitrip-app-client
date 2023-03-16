@@ -11,7 +11,7 @@ function AddGroup(props) {
   useEffect(() => {
     const fetchUsers = async () => {
       const response = await getUsersService()
-      setUserList(response.data)
+      setUserList(response.data.sort((a, b) => a.username.localeCompare(b.username)))
     }
     fetchUsers()
   }, [])
