@@ -9,7 +9,7 @@ import ListExpenses from '../components/ListExpenses'
 function DetailsGroups() {
   const navigate = useNavigate()
   const params = useParams()
-  console.log(params)
+  console.log("params - dg", params)
 
   const [singleGroup, setSingleGroup] = useState(null)
   const [isFetching, setIsFetching] = useState(true)
@@ -43,17 +43,18 @@ function DetailsGroups() {
       }
     }
   }
-
+// console.log("SINGLE_DATAMEMBS:",singleGroup.data.members)
   return (
     <div>
       {isFetching === true ? (
         <h3>...buscando</h3>
       ) : (
         <div>
+          
           <h3>GRUPO DE VIAJE : {singleGroup.groupName} </h3> Miembros:{' '}
           {singleGroup.members.map((member, index) => (
-            <p key={index}>{member}</p>
-          ))}
+            <p key={index}>{member.username}</p>
+          ))} 
           <button onClick={handleDeleteGroup}>Borrar Grupo</button>
           <Link to={`/groups/${params.groupId}/edit`}>
             <button>Editar Grupo</button>
