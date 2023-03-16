@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import Select from 'react-select';
 import { createGroupServices } from '../services/groups.services'
-import {  getUsersService } from '../services/auth.services'
+import { getUsersService } from '../services/auth.services'
 
 function AddGroup(props) {
   const [groupName, setGroupName] = useState('')
-  const [members, setMembers] = useState('')
+  const [members, setMembers] = useState([])
   const [userList, setUserList] = useState([])
 
   useEffect(() => {
@@ -16,12 +17,15 @@ function AddGroup(props) {
   }, [])
 
   const handleGroupNameChange = (e) => setGroupName(e.target.value)
-  const handleMembersChange = (e) => setMembers(e.target.value)
+
+  const handleMembersChange = (selectedMembers) => {
+    setMembers(selectedMembers)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const membersArr = members.split(',').map(member => member.trim())
+    const membersArr = members.map(member => member.value)
 
     for (let i = 0; i < membersArr.length; i++) {
       if (!userList.find(user => user.username === membersArr[i])) {
@@ -39,12 +43,15 @@ function AddGroup(props) {
       const response = await createGroupServices(newGroup)
       console.log(response)
       setGroupName('')
-      setMembers('')
+      setMembers([])
       props.getData()
     } catch (error) {
       console.log(error)
     }
   }
+
+  // Opciones del select
+  const options = userList.map(user => ({ value: user.username, label: user.username }))
 
   return (
     <div>
@@ -61,10 +68,11 @@ function AddGroup(props) {
         />
         <br />
 
-        <label htmlFor="members">Miembros (separados por coma)</label>
-        <input
-          type="text"
+        <label htmlFor="members">Miembros</label>
+        <Select
+          isMulti
           name="members"
+          options={options}
           onChange={handleMembersChange}
           value={members}
           required
