@@ -111,6 +111,7 @@ function ListExpenses() {
       </p>
       <h3>Listado de Gastos</h3>
 
+
       <table>
         <thead>
           <tr>
@@ -137,7 +138,6 @@ function ListExpenses() {
           })}
         </tbody>
       </table>
-
       {allExpenses.map((eachExpense) => {
         return (
           <div key={eachExpense._id}>

@@ -24,6 +24,14 @@ const getUserGroupsService = (userId) => {
   return service.get(`/users/${userId}/groups`)
 }
 
+
+const addUserToGroupServices = (groupId, userId) =>{
+ 
+  return   service.put(`/users/${userId}/groups/${groupId}`);
+    
+
+  
+}
 export {
   getAllGroupsServices,
   createGroupServices,
