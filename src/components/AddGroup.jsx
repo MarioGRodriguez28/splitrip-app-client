@@ -24,21 +24,17 @@ function AddGroup(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    const membersArr = members.map(member => member.value)
-
-    for (let i = 0; i < membersArr.length; i++) {
-      if (!userList.find(user => user.username === membersArr[i])) {
-        alert(`El usuario ${membersArr[i]} no está registrado`)
-        return
-      }
-    }
-
+  
+    const membersArr = members.map(member => {
+      const user = userList.find(user => user.username === member.value)
+      return user._id
+    })
+  
     const newGroup = {
       groupName: groupName,
       members: membersArr,
     }
-
+  
     try {
       const response = await createGroupServices(newGroup)
       console.log(response)
@@ -49,6 +45,7 @@ function AddGroup(props) {
       console.log(error)
     }
   }
+  
 
   // Opciones del select
   const options = userList.map(user => ({ value: user.username, label: user.username }))
