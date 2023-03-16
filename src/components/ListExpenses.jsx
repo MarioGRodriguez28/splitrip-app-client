@@ -111,6 +111,7 @@ function ListExpenses() {
       </p>
       <h3>Listado de Gastos</h3>
 
+
       <table>
         <thead>
           <tr>
@@ -137,14 +138,12 @@ function ListExpenses() {
           })}
         </tbody>
       </table>
-
       {allExpenses.map((eachExpense) => {
         return (
           <div key={eachExpense._id}>
             <p>
-              {getUsernameById(eachExpense.id_user)} : {eachExpense.item} :{' '}
-              {eachExpense.ammount.toFixed(2)} &#128176;{' '}
-              {/* Cambia el número de decimales a 2 */}
+              {getUsernameById(eachExpense.id_user)} : {eachExpense.item}:
+              {eachExpense.ammount.toFixed(2)} &#128176;
               <button
                 className="boton1"
                 onClick={() => handleDeleteExpense(eachExpense._id)}

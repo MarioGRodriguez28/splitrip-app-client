@@ -8,6 +8,9 @@ import { getUsersService } from '../services/auth.services'
 function AddGroup(props) {
   const [groupName, setGroupName] = useState('')
   const [userList, setUserList] = useState([])
+  const [userGroups, setUserGroups] = useState([])
+  const [selectedMembers, setSelectedMembers] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -15,7 +18,13 @@ function AddGroup(props) {
       setUserList(response.data)
     }
     fetchUsers()
-  }, [])
+
+    const fetchUserGroups = async () => {
+      const response = await getUserGroupsService(props.userId)
+      setUserGroups(response.data)
+    }
+    fetchUserGroups()
+  }, [props.userId])
 
   const handleGroupNameChange = (e) => setGroupName(e.target.value)
   const handleMembersChange = (e) =>
@@ -67,13 +76,11 @@ function AddGroup(props) {
         />
         <br />
 
-        <label htmlFor="members">Miembros (separados por coma)</label>
+        <label htmlFor="members">Miembros</label>
         <input
           type="text"
-          name="members"
-          onChange={handleMembersChange}
-          value={members}
-          required
+          placeholder="Buscar miembro"
+          onChange={handleSearchTermChange}
         />
         <select
           name="members"
