@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# SPLITRIP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br>
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+Thee easiest way to share expenses with friends and family and stop stressing about “who owes who”. Millions of people around the world use Splitrip to organize group bills for households, trips, and more.
 
-### `npm start`
+This is a repository for a project called "splitrip-app-server". This repository contains the server-side code for a web application that allows users to split travel expenses among a group of people.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The repository is written in JavaScript using Node.js and Express.js. It also uses MongoDB as its database. The code includes routes for handling user authentication, managing trips and expenses, and generating reports.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+It appears to be an open-source project, which means that anyone can contribute to it or use it as a starting point for their own project. It may be helpful to read through the code and documentation to better understand how it works and how it could be used.
 
-### `npm test`
+## Backlog
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Travel bucket list
+- Travel piggy bank
+- Books media
+- Email invitation
+- Add more members to the groups
+- Improve styles
+- Time when is created a group
+- Time when is created a expense
 
-### `npm run build`
+<br>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Frontend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Components
 
-### `npm run eject`
+- AddGroup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- GastosForm
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- IsPrivate
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- ListExpenses
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- ListGroups
 
-## Learn More
+- UserGroups
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Context
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- auth.context
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Services
 
-### Analyzing the Bundle Size
+- auth.services
+  - const signupService = (newUser) => {
+  return service.post('/auth/signup', newUser)
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- const loginService = (userCredentials) => {
+  return service.post('/auth/login', userCredentials)
+}
 
-### Making a Progressive Web App
+- const verifyService = () => {
+  return service.get('/auth/verify')
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- const getUsersService = () => {
+  return service.get('/auth/users')
+}
 
-### Advanced Configuration
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Links
 
-### `npm run build` fails to minify
+### Git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The url to your repository and to your deployed project
+
+[Client repository Link](https://github.com/MarioGRodriguez28/splitrip-app-client.git)
+
+[Server repository Link](https://github.com/MarioGRodriguez28/splitrip-app-server.git)
+
+[Deployed App Link](https://splitrip.netlify.app/)
+
+### Slides
+
+The url to your presentation slides
+
+[Slides Link](pendding)
