@@ -135,23 +135,23 @@ function ListExpenses({ members }) {
   })}
 </tbody>
       </table>
-     
-{expensesInGroup.map((eachExpense) => {
-  return (
-    <div key={eachExpense._id}>
-      <p>
-        {getUsernameById(eachExpense.id_user)} : {eachExpense.item} :{' '}
-        {eachExpense.ammount.toFixed(1)} &#128176;{' '}
-        <button
-          className="boton1"
-          onClick={() => handleDeleteExpense(eachExpense._id)}
-        >
-          <span className="icocor1">&#10060; </span>
-        </button>
-      </p>
-    </div>
-  )
-})}
+      {allExpenses.map((eachExpense) => {
+        return (
+          <div key={eachExpense._id}>
+            <p>
+              {getUsernameById(eachExpense.id_user)} : {eachExpense.item} :{' '}
+              {eachExpense.ammount.toFixed(1)} &#128176;{' '}
+              {/* Cambia el número de decimales a 2 */}
+              <button
+                className="boton1"
+                onClick={() => handleDeleteExpense(eachExpense._id)}
+              >
+                <span className="icocor1">&#10060; </span>
+              </button>
+            </p>
+          </div>
+        )
+      })}
     </div>
   )
 }
