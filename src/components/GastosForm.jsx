@@ -9,16 +9,13 @@ function GastosForm(props) {
   const handleItemChange = (e) => setItem(e.target.value)
 
   const handleSubmit = async (e) => {
-    // setAmmount(0);
-    // setItem("");
     e.preventDefault()
 
     const newExpenses = {
       ammount,
       item,
-      id_group: props.id_group
+      id_group: props.id_group,
     }
-    // console.log(newExpenses)
     try {
       const response = await createExpensesService(newExpenses)
       console.log(response)
@@ -31,31 +28,48 @@ function GastosForm(props) {
   }
 
   return (
-    <div>
-      <h3>Agregar Gasto</h3>
+    <div className="container mt-3">
+      <h3 className="text-center mb-3">Agregar Gasto</h3>
 
       <form onSubmit={handleSubmit}>
-        <label></label>
-        <label htmlFor="item">Concepto: </label>
-        <input
-          type="text"
-          name="item"
-          onChange={handleItemChange}
-          value={item}
-          min="0"
-          required
-        />
+        <div className="form-group">
+          <label htmlFor="item">Concepto:</label>
+          <input
+            type="text"
+            className="form-control"
+            id="item"
+            name="item"
+            onChange={handleItemChange}
+            value={item}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="ammount">Importe:</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">$</span>
+            <input
+             
+              class="form-control"
+              type="number"
+              className="form-control"
+              id="ammount"
+              name="ammount"
+              onChange={handleAmmountChange}
+              value={ammount}
+              min="0"
+              aria-label="Amount (to the nearest dollar)"
+              required
+            />
+            <span class="input-group-text">.00</span>
+          </div>
+        </div>
+
         <br />
-        <label htmlFor="ammount">Importe: </label>
-        <input
-          type="number"
-          name="ammount"
-          onChange={handleAmmountChange}
-          min="0"
-          value={ammount}
-        />
-        <br />
-        <button type="submit">Agregar</button>
+        <button type="submit" className="btn btn-secondary">
+          Agregar
+        </button>
       </form>
     </div>
   )

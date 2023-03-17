@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from "react";
-import {Link} from "react-router-dom";
-import {getAllGroupsServices} from "../services/groups.services";
-import { useNavigate } from "react-router-dom"
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { getAllGroupsServices } from '../services/groups.services'
+import { useNavigate } from 'react-router-dom'
 
 function ListGroups(props) {
   const [allGroups, setAllgroups] = useState(null)
@@ -9,39 +9,45 @@ function ListGroups(props) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    getData();
-  }, [props.shouldUpdate]);
+    getData()
+  }, [props.shouldUpdate])
 
   const getData = async () => {
-    setIsFetching(true);
+    setIsFetching(true)
     try {
-      const response = await getAllGroupsServices();
-      setAllgroups(response.data);
-      setIsFetching(false);
+      const response = await getAllGroupsServices()
+      setAllgroups(response.data)
+      setIsFetching(false)
     } catch (error) {
-      navigate(error);
+      navigate(error)
     }
-  };
+  }
 
   if (isFetching === true) {
-    return <h3>... spinners</h3>;
+    return <h3>... spinners</h3>
   }
 
   return (
-    <div>
-      <hr />
+    <div className="text-white my-5">
+
       <h3>Lista de Grupos</h3>
 
-      {allGroups.map((eachGroup) => {
-        return (
-          <p key={eachGroup._id}>
-            <Link to={`/groups/${eachGroup._id}`}>{eachGroup.groupName}</Link>
-          </p>
-        );
-      })}
+      <div className="list-group">
+        {allGroups.map((eachGroup) => {
+          return (
+            <Link
+              to={`/groups/${eachGroup._id}`}
+              key={eachGroup._id}
+              className="list-group-item d-flex justify-content-between align-items-center"
+            >
+              {eachGroup.groupName}
+              <i className="fas fa-chevron-right"></i>
+            </Link>
+          )
+        })}
+      </div>
     </div>
-  );
+  )
 }
 
-
-export default ListGroups;
+export default ListGroups

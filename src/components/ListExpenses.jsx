@@ -106,51 +106,56 @@ function ListExpenses({ members }) {
      <GastosForm getData={getData} setData={handleDataChange} id_group={groupId} />
 
       <p>
-        Gasto Total: <strong>{getTotalExpenses()}</strong>
+        Gasto Total: <strong>$ {getTotalExpenses()}</strong>
       </p>
-      <h3>Listado de Gastos</h3>
-
-
-      <table>
-        <thead>
-          <tr>
-            <th>Usuario</th>
-            <th>Gasto</th>
-            <th>Saldo</th>
-          </tr>
-        </thead>
-        <tbody>
-  {users.map((user) => {
-    const expense = expensesByUser[user._id] || 0
-    const cuenta = getCuentaByUser(user._id, expense)
-    return (
-      <tr key={user._id}>
-        <td>{user.username}</td>
-        <td>{expense.toFixed(1)}</td>
-        <td style={{ color: cuenta > 0 ? 'red' : 'blue' }}>
-          {cuenta}{"  :  "}{cuenta > 0 ? "Pagar" : " Recibir"}
-        </td>
+      <div class="container">
+  <h3 class="text-center mb-5">Listado de Gastos</h3>
+  <table class="table">
+    <thead>
+      <tr class="text-white">
+        <th>Usuario</th>
+        <th>Gasto</th>
+        <th>Saldo</th>
       </tr>
-    )
-  })}
-</tbody>
-      </table>
+    </thead>
+    <tbody>
+      {users.map((user) => {
+        const expense = expensesByUser[user._id] || 0;
+        const cuenta = getCuentaByUser(user._id, expense);
+        return (
+          <tr key={user._id} class="text-white">
+            <td>{user.username}</td>
+            <td>$ {expense.toFixed(2)}</td>
+            <td style={{ color: cuenta > 0 ? 'red' : 'blue' }}>
+              {cuenta}{"  :  "}{cuenta > 0 ? "Pagar" : " Recibir"}
+            </td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>
+
       {allExpenses.map((eachExpense) => {
         return (
-          <div key={eachExpense._id}>
-            <p>
-              {getUsernameById(eachExpense.id_user)} : {eachExpense.item} :{' '}
-              {eachExpense.ammount.toFixed(1)} &#128176;{' '}
-              {/* Cambia el número de decimales a 2 */}
-              <button
-                className="boton1"
-                onClick={() => handleDeleteExpense(eachExpense._id)}
-              >
-                <span className="icocor1">&#10060; </span>
-              </button>
-            </p>
-          </div>
-        )
+  <div key={eachExpense._id} className="d-flex justify-content-between align-items-center mb-2">
+    <div className="flex-grow-1">
+      <p className="mb-0">
+        <strong>{getUsernameById(eachExpense.id_user)}</strong>: {eachExpense.item} :{' '}
+        {eachExpense.ammount.toFixed(2)} 
+      </p>
+    </div>
+    <div>
+      <button
+        className="btn btn-danger"
+        onClick={() => handleDeleteExpense(eachExpense._id)}
+      >
+        <span className="icocor1" aria-label="Eliminar">&#10060; </span>
+      </button>
+    </div>
+  </div>
+);
+
       })}
     </div>
   )

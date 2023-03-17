@@ -43,22 +43,28 @@ function DetailsGroups() {
       }
     }
   }
-// console.log("SINGLE_DATAMEMBS:",singleGroup.data.members)
+
   return (
-    <div>
+    <div className="container">
       {isFetching === true ? (
-        <h3>...buscando</h3>
+        <h3 className="text-center my-5">...buscando</h3>
       ) : (
         <div>
-          
-          <h3>GRUPO DE VIAJE : {singleGroup.groupName} </h3> Miembros:{' '}
-          {singleGroup.members.map((member, index) => (
-            <p key={index}>{member.username}</p>
-          ))} 
-          <button onClick={handleDeleteGroup}>Borrar Grupo</button>
-          <Link to={`/groups/${params.groupId}/edit`}>
-            <button>Editar Grupo</button>
-          </Link>
+          <h3 className="text-center my-3">GRUPO DE VIAJE : {singleGroup.groupName} </h3>
+          <div className="row">
+            <div className="col-md-6 mx-auto">
+              <ul className="list-group">
+                <li className="list-group-item list-group-item-dark"><h1>Miembros</h1></li>
+                {singleGroup.members.map((member, index) => (
+                  <li className="list-group-item" key={index}><h3>{member.username}</h3></li>
+                ))}
+              </ul>
+              <div className="my-3">
+                <button className="btn btn-danger mr-2" onClick={handleDeleteGroup}>Borrar Grupo</button>
+                <Link to={`/groups/${params.groupId}/edit`} className="btn btn-secondary">Editar Grupo</Link>
+              </div>
+            </div>
+          </div>
           <ListExpenses members={singleGroup.members} />
         </div>
       )}

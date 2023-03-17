@@ -1,85 +1,75 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { signupService } from "../../services/auth.services.js";
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { signupService } from '../../services/auth.services.js'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Alert from 'react-bootstrap/Alert'
 
 function Signup() {
   const navigate = useNavigate()
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [ errorMessage, setErrorMessage ] = useState("")
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
-
-  const handleUsernameChange = (e) => setUsername(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
+  const handleUsernameChange = (e) => setUsername(e.target.value)
+  const handlePasswordChange = (e) => setPassword(e.target.value)
 
   const handleSignup = async (e) => {
-    e.preventDefault();
-   
+    e.preventDefault()
 
- 
     const newUser = {
       username: username,
-      password: password
+      password: password,
     }
 
     try {
-
       await signupService(newUser)
-      navigate("/login")
-
+      navigate('/login')
     } catch (error) {
-      // console.log(error.response.status)
-      // console.log(error.response.data.errorMessage)
       if (error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage)
       } else {
-        navigate("/error")
+        navigate('/error')
       }
     }
-
-  };
+  }
 
   return (
-    <div>
-
+    <div className="container">
       <h1>Sign Up</h1>
-    
-      <form onSubmit={handleSignup}>
-        <label>Username:</label>
-        <input
-          type="text"
-          name="username"
-          value={username}
-          onChange={handleUsernameChange}
-        />
+      <Form onSubmit={handleSignup}>
+        <Form.Group controlId="username">
+          <Form.Label>Nombre de usuario</Form.Label>
+          <br />
+          <Form.Control
+            class="col-xs-3"
+            type="text"
+            placeholder="Introduce tu nombre"
+            value={username}
+            onChange={handleUsernameChange}
+          />
+        </Form.Group>
 
+        <Form.Group controlId="password">
+          <Form.Label>Contraseña</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+        </Form.Group>
+
+        {errorMessage !== '' ? (
+          <Alert variant="danger">{errorMessage}</Alert>
+        ) : null}
         <br />
-
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-
-        <br />
-
-        {errorMessage !== "" ? <p>{errorMessage}</p> : null}
-
-        <button type="submit">Sign Up</button>
-      </form>
-      
+        <Button variant="secondary" type="submit">
+          Sign Up
+        </Button>
+      </Form>
     </div>
-  );
-
-
-
-
-
-
-
-
+  )
 }
 
 export default Signup

@@ -4,23 +4,23 @@ import AddGroup from '../components/AddGroup'
 // import ListExpenses from '../components/ListExpenses'
 import ListGroups from '../components/ListGroups'
 
+
 function Profile() {
-  const [shouldUpdate, setShouldUpdate] = useState(false);
+  const [shouldUpdate, setShouldUpdate] = useState(false)
 
   const handleUpdate = () => {
-    setShouldUpdate(true);
+    setShouldUpdate(true)
   }
 
   useEffect(() => {
     if (shouldUpdate) {
-      setShouldUpdate(false);
+      setShouldUpdate(false)
     }
-  }, [shouldUpdate]);
+  }, [shouldUpdate])
 
   return (
-    <div>
-      {' '}
-      <h3>Perfil de usuario</h3>
+    <div className="text-white container">
+      <h3 className="text-lg">Perfil de usuario</h3>
       <AddGroup getData={handleUpdate} />
       <ListGroups shouldUpdate={shouldUpdate} />
     </div>

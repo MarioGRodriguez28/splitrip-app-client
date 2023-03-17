@@ -48,35 +48,61 @@ function AddGroup(props) {
   
 
   // Opciones del select
-  const options = userList.map(user => ({ value: user.username, label: user.username }))
+  const options = userList.map(user => ({ value: user.username, label: user.username, color: 'green' }))
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: 'white',
+      borderRadius: 'none',
+      borderColor: 'gray',
+      '&:hover': {
+        borderColor: 'gray'
+      }
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected ? 'gray' : 'white',
+      color: 'black',
+      '&:hover': {
+        backgroundColor: 'gray'
+      }
+    }),
+  }
 
   return (
-    <div>
+    <div className="container">
       <h3>Agregar grupo</h3>
 
       <form onSubmit={handleSubmit} key={'_id'}>
-        <label htmlFor="groupName">Nombre del grupo</label>
-        <input
-          type="text"
-          name="groupName"
-          onChange={handleGroupNameChange}
-          value={groupName}
-          required
-        />
-        <br />
+        <div className="form-group">
+          <label htmlFor="groupName">Nombre del grupo</label>
+          <input
+            type="text"
+            className="form-control"
+            name="groupName"
+            onChange={handleGroupNameChange}
+            value={groupName}
+            required
+          />
+        </div>
 
-        <label htmlFor="members">Miembros</label>
-        <Select
-          isMulti
-          name="members"
-          options={options}
-          onChange={handleMembersChange}
-          value={members}
-          required
-        />
+        <div className="form-group">
+          <label htmlFor="members">Miembros</label>
+          <Select 
+            className="basic-single"
+            classNamePrefix="select"
+            isMulti
+            name="members"
+            options={options}
+            onChange={handleMembersChange}
+            value={members}
+            styles={customStyles}
+            required
+          />
+        </div>
         <br />
-
-        <button type="submit">Agregar</button>
+        <button type="submit" className="btn btn-secondary">Agregar</button>
       </form>
     </div>
   )

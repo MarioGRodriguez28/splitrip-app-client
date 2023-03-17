@@ -1,14 +1,44 @@
+body {
+  color: white;
+  height: 100vh;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(28, 84, 60),
+    rgb(2, 30, 25)
+    
+  );
+}
+
+.container{
+  padding: 25px;
+}
+.Card{
+  background-color: rgb(4, 48, 42);
+}
 .App {
   text-align: center;
 }
-.icocor1 {font-size: 10px;
- }
- .boton1 {
-  margin-left: 18px;
- }
+
+.icocor1 {
+  font-size: 8px;
+}
+
+.boton1 {
+  margin-left: 12px;
+}
+
+@media (min-width: 576px) {
+  .icocor1 {
+    font-size: 10px;
+  }
+
+  .boton1 {
+    margin-left: 18px;
+  }
+}
 
 .App-link {
-  color: #61dafb;
+  color: #0c1315;
 }
 
 @keyframes App-logo-spin {
@@ -18,4 +48,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@media screen and (max-width: 767px) {
+  /* Estilos para dispositivos móviles */
+}
+
+@media screen and (min-width: 768px) {
+  /* Estilos para dispositivos de escritorio */
 }
