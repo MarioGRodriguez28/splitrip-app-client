@@ -16,7 +16,7 @@ function GastosForm(props) {
     const newExpenses = {
       ammount,
       item,
-      // id_group: groupId
+      id_group: props.id_group
     }
     // console.log(newExpenses)
     try {

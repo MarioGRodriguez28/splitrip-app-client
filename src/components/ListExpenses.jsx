@@ -1,15 +1,18 @@
+import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react'
 import {
   getAllExpensesService,
   deleteExpensesService,
 } from '../services/expenses.services'
-import { getUsersService } from '../services/auth.services'
 import GastosForm from './GastosForm'
+
 function ListExpenses({ members }) {
   const [allExpenses, setAllExpenses] = useState(null)
+  const [expensesInGroup, setExpensesInGroup] = useState(null)
+
   const [isFetching, setIsFetching] = useState(true)
   const [users, setUsers] = useState(members)
-
+  const { groupId } = useParams();
   useEffect(() => {
     getData()
   }, [])
@@ -18,16 +21,20 @@ function ListExpenses({ members }) {
     setIsFetching(true)
     try {
       const response = await getAllExpensesService()
-      setAllExpenses(response.data)
+      const expensesInGroup = response.data.filter(expense => expense.id_group === groupId)
+      setAllExpenses(expensesInGroup)
+      setExpensesInGroup(expensesInGroup)
       setIsFetching(false)
     } catch (error) {
       console.log(error)
     }
   }
-
+  
   const handleDataChange = (data) => {
     setAllExpenses(data)
+    setExpensesInGroup(data.filter(expense => expense.id_group === groupId))
   }
+  
 
   const handleDeleteExpense = async (expenseId) => {
     const shouldDelete = window.confirm(
@@ -88,13 +95,16 @@ function ListExpenses({ members }) {
     const userShare = totalExpenses / remainingUsers
     const userExpense = expense || 0
     const cuenta = userShare - userExpense
+    
     return cuenta.toFixed(2)
   }
   const expensesByUser = getExpensesByUser()
-
+  
   return (
+    
     <div>
-      <GastosForm getData={getData} setData={handleDataChange} />
+     <GastosForm getData={getData} setData={handleDataChange} id_group={groupId} />
+
       <p>
         Gasto Total: <strong>{getTotalExpenses()}</strong>
       </p>
@@ -109,42 +119,39 @@ function ListExpenses({ members }) {
             <th>Saldo</th>
           </tr>
         </thead>
-
         <tbody>
-          {users.map((user) => {
-            const expense = expensesByUser[user._id] || 0
-            const cuenta = getCuentaByUser(user._id, expense)
-            // if (expense > 0) {
-            return (
-              <tr key={user._id}>
-                <td>{user.username}</td>
-                <td>{expense.toFixed(1)}</td>
-
-                <td style={{ color: cuenta > 0 ? 'red' : 'blue' }}>
-                  {cuenta}{"  :  "}{cuenta > 0 ? "Pagar" : " Recibir"}
-                </td>
-              </tr>
-            )
-          })}
-        </tbody>
+  {users.map((user) => {
+    const expense = expensesByUser[user._id] || 0
+    const cuenta = getCuentaByUser(user._id, expense)
+    return (
+      <tr key={user._id}>
+        <td>{user.username}</td>
+        <td>{expense.toFixed(1)}</td>
+        <td style={{ color: cuenta > 0 ? 'red' : 'blue' }}>
+          {cuenta}{"  :  "}{cuenta > 0 ? "Pagar" : " Recibir"}
+        </td>
+      </tr>
+    )
+  })}
+</tbody>
       </table>
-      {allExpenses.map((eachExpense) => {
-        return (
-          <div key={eachExpense._id}>
-            <p>
-              {getUsernameById(eachExpense.id_user)} : {eachExpense.item} :{' '}
-              {eachExpense.ammount.toFixed(1)} &#128176;{' '}
-              {/* Cambia el número de decimales a 2 */}
-              <button
-                className="boton1"
-                onClick={() => handleDeleteExpense(eachExpense._id)}
-              >
-                <span className="icocor1">&#10060; </span>
-              </button>
-            </p>
-          </div>
-        )
-      })}
+     
+{expensesInGroup.map((eachExpense) => {
+  return (
+    <div key={eachExpense._id}>
+      <p>
+        {getUsernameById(eachExpense.id_user)} : {eachExpense.item} :{' '}
+        {eachExpense.ammount.toFixed(1)} &#128176;{' '}
+        <button
+          className="boton1"
+          onClick={() => handleDeleteExpense(eachExpense._id)}
+        >
+          <span className="icocor1">&#10060; </span>
+        </button>
+      </p>
+    </div>
+  )
+})}
     </div>
   )
 }
