@@ -1,15 +1,11 @@
-import axios from "axios";
-
+import axios from 'axios'
 
 const service = axios.create({
-  baseURL: process.env.REACT_APP_SERVER_URL
+  baseURL: process.env.REACT_APP_SERVER_URL,
 })
 
-
 service.interceptors.request.use((config) => {
-  
-
-  const storedToken = localStorage.getItem("authToken")
+  const storedToken = localStorage.getItem('authToken')
   const tokenAndType = `Bearer ${storedToken}`
 
   if (storedToken) {
@@ -17,7 +13,6 @@ service.interceptors.request.use((config) => {
   }
 
   return config
-
 })
 
-export default service;
+export default service

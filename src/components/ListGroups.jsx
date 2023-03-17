@@ -24,12 +24,11 @@ function ListGroups(props) {
   }
 
   if (isFetching === true) {
-    return <h3>... spinners</h3>
+    return <h3>...Cargando</h3>
   }
 
   return (
     <div className="text-white my-5">
-
       <h3>Lista de Grupos</h3>
 
       <div className="list-group">

@@ -1,47 +1,45 @@
-import { createContext, useState, useEffect } from "react";
-import { verifyService } from "../services/auth.services.js";
+import { createContext, useState, useEffect } from 'react'
+import { verifyService } from '../services/auth.services.js'
 
-const AuthContext = createContext();
+const AuthContext = createContext()
 
 function AuthWrapper(props) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loggedUser, setLoggedUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [loggedUser, setLoggedUser] = useState(null)
   const [isFetching, setIsFetching] = useState(true)
 
-
- 
   const authenticateUser = async () => {
     setIsFetching(true)
     try {
-      const response = await verifyService();
-      console.log("Token es valido");
-      console.log(response);
+      const response = await verifyService()
+      console.log('Token es valido')
+      console.log(response)
       setIsLoggedIn(true)
       setLoggedUser(response.data)
       setIsFetching(false)
     } catch (error) {
-      console.log("Token invalido o no existe");
-      console.log(error);
+      console.log('Token invalido o no existe')
+      console.log(error)
       setIsLoggedIn(false)
       setLoggedUser(null)
       setIsFetching(false)
     }
-  };
+  }
 
   useEffect(() => {
-    authenticateUser() 
-  }, []) 
+    authenticateUser()
+  }, [])
 
   const passedContext = {
     isLoggedIn,
     loggedUser,
-    authenticateUser
-  };
+    authenticateUser,
+  }
 
   if (isFetching === true) {
     return (
       <div className="App">
-        <h2>... validando credenciales</h2>
+        <h2>...validando credenciales</h2>
       </div>
     )
   }
@@ -50,7 +48,7 @@ function AuthWrapper(props) {
     <AuthContext.Provider value={passedContext}>
       {props.children}
     </AuthContext.Provider>
-  );
+  )
 }
 
-export { AuthContext, AuthWrapper };
+export { AuthContext, AuthWrapper }

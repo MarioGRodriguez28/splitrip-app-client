@@ -20,7 +20,6 @@ function GroupEdit() {
   const getData = async () => {
     try {
       const response = await singleGroupServices(params.groupId)
-      // console.log(response)
 
       setGroupName(response.data.groupName)
     } catch (error) {

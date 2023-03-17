@@ -1,25 +1,24 @@
-import service from "./config.services";
+import service from './config.services'
 
 const getAllExpensesService = () => {
-  return service.get("/expenses");
-};
+  return service.get('/expenses')
+}
 
 const createExpensesService = (newExpenses) => {
-  return service.post("/expenses", newExpenses);
-};
+  return service.post('/expenses', newExpenses)
+}
 
 const singleExpensesService = (expensesId) => {
-  return service.get(`/expenses/${expensesId}`);
-};
+  return service.get(`/expenses/${expensesId}`)
+}
 
 const deleteExpensesService = (expensesId) => {
-  return service.delete(`/expenses/${expensesId}`);
-};
+  return service.delete(`/expenses/${expensesId}`)
+}
 
 const updateExpensesService = (expensesId, updateExpenses) => {
-  return service.delete(`/expenses/${expensesId}`, updateExpenses);
-};
-
+  return service.delete(`/expenses/${expensesId}`, updateExpenses)
+}
 
 export {
   getAllExpensesService,
@@ -27,5 +26,4 @@ export {
   singleExpensesService,
   deleteExpensesService,
   updateExpensesService,
-  
-};
+}

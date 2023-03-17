@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Select from 'react-select';
+import Select from 'react-select'
 import { createGroupServices } from '../services/groups.services'
 import { getUsersService } from '../services/auth.services'
 
@@ -11,7 +11,9 @@ function AddGroup(props) {
   useEffect(() => {
     const fetchUsers = async () => {
       const response = await getUsersService()
-      setUserList(response.data.sort((a, b) => a.username.localeCompare(b.username)))
+      setUserList(
+        response.data.sort((a, b) => a.username.localeCompare(b.username)),
+      )
     }
     fetchUsers()
   }, [])
@@ -24,17 +26,17 @@ function AddGroup(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-  
-    const membersArr = members.map(member => {
-      const user = userList.find(user => user.username === member.value)
+
+    const membersArr = members.map((member) => {
+      const user = userList.find((user) => user.username === member.value)
       return user._id
     })
-  
+
     const newGroup = {
       groupName: groupName,
       members: membersArr,
     }
-  
+
     try {
       const response = await createGroupServices(newGroup)
       console.log(response)
@@ -45,10 +47,13 @@ function AddGroup(props) {
       console.log(error)
     }
   }
-  
 
   // Opciones del select
-  const options = userList.map(user => ({ value: user.username, label: user.username, color: 'green' }))
+  const options = userList.map((user) => ({
+    value: user.username,
+    label: user.username,
+    color: 'green',
+  }))
 
   const customStyles = {
     control: (provided) => ({
@@ -57,16 +62,16 @@ function AddGroup(props) {
       borderRadius: 'none',
       borderColor: 'gray',
       '&:hover': {
-        borderColor: 'gray'
-      }
+        borderColor: 'gray',
+      },
     }),
     option: (provided, state) => ({
       ...provided,
       backgroundColor: state.isSelected ? 'gray' : 'white',
       color: 'black',
       '&:hover': {
-        backgroundColor: 'gray'
-      }
+        backgroundColor: 'gray',
+      },
     }),
   }
 
@@ -89,7 +94,7 @@ function AddGroup(props) {
 
         <div className="form-group">
           <label htmlFor="members">Miembros</label>
-          <Select 
+          <Select
             className="basic-single"
             classNamePrefix="select"
             isMulti
@@ -102,7 +107,9 @@ function AddGroup(props) {
           />
         </div>
         <br />
-        <button type="submit" className="btn btn-secondary">Agregar</button>
+        <button type="submit" className="btn btn-secondary">
+          Agregar
+        </button>
       </form>
     </div>
   )

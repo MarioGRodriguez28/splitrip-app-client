@@ -2,14 +2,14 @@ import React from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { AuthContext } from '../context/auth.context'
+
+
 import Button from 'react-bootstrap/Button'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import { Card, Col, ListGroup, Row } from 'react-bootstrap'
-// import Image1 from '../assets/1191628-ffffff.svg';
-// import Image2 from '../assets/1910761-ffffff.svg';
-// import Image3 from '../assets/309113-ffffff.svg'
+
 
 function Home() {
   const { isLoggedIn, authenticateUser } = useContext(AuthContext)
@@ -82,18 +82,7 @@ function Home() {
           piso, de viaje, grupos, amigos y familia.
         </p>
         <Container className="mt-3">
-  {/* <Row>
-    <Col>
-      <Image1 />
-    </Col>
-    <Col>
-      <Image2 />
-    </Col>
-    <Col>
-      <Image3 />
-    </Col>
-  </Row> */}
-  {/* Resto de tu código aquí */}
+  
 </Container>
         <Card cclass="p-3 mb-2 bg-transparent ">
   <Card.Body class="p-3 mb-2 bg-transparent ">

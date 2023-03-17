@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import {
   getAllExpensesService,
@@ -12,7 +12,7 @@ function ListExpenses({ members }) {
 
   const [isFetching, setIsFetching] = useState(true)
   const [users, setUsers] = useState(members)
-  const { groupId } = useParams();
+  const { groupId } = useParams()
   useEffect(() => {
     getData()
   }, [])
@@ -21,7 +21,9 @@ function ListExpenses({ members }) {
     setIsFetching(true)
     try {
       const response = await getAllExpensesService()
-      const expensesInGroup = response.data.filter(expense => expense.id_group === groupId)
+      const expensesInGroup = response.data.filter(
+        (expense) => expense.id_group === groupId,
+      )
       setAllExpenses(expensesInGroup)
       setExpensesInGroup(expensesInGroup)
       setIsFetching(false)
@@ -29,12 +31,11 @@ function ListExpenses({ members }) {
       console.log(error)
     }
   }
-  
+
   const handleDataChange = (data) => {
     setAllExpenses(data)
-    setExpensesInGroup(data.filter(expense => expense.id_group === groupId))
+    setExpensesInGroup(data.filter((expense) => expense.id_group === groupId))
   }
-  
 
   const handleDeleteExpense = async (expenseId) => {
     const shouldDelete = window.confirm(
@@ -81,7 +82,7 @@ function ListExpenses({ members }) {
   }
 
   if (isFetching === true || users === null) {
-    return <h3>... spinners</h3>
+    return <h3>...Cargando</h3>
   }
 
   const getTotalUsers = () => {
@@ -95,67 +96,76 @@ function ListExpenses({ members }) {
     const userShare = totalExpenses / remainingUsers
     const userExpense = expense || 0
     const cuenta = userShare - userExpense
-    
+
     return cuenta.toFixed(2)
   }
   const expensesByUser = getExpensesByUser()
-  
+
   return (
-    
     <div>
-     <GastosForm getData={getData} setData={handleDataChange} id_group={groupId} />
+      <GastosForm
+        getData={getData}
+        setData={handleDataChange}
+        id_group={groupId}
+      />
 
       <p>
         Gasto Total: <strong>$ {getTotalExpenses()}</strong>
       </p>
       <div class="container">
-  <h3 class="text-center mb-5">Listado de Gastos</h3>
-  <table class="table">
-    <thead>
-      <tr class="text-white">
-        <th>Usuario</th>
-        <th>Gasto</th>
-        <th>Saldo</th>
-      </tr>
-    </thead>
-    <tbody>
-      {users.map((user) => {
-        const expense = expensesByUser[user._id] || 0;
-        const cuenta = getCuentaByUser(user._id, expense);
-        return (
-          <tr key={user._id} class="text-white">
-            <td>{user.username}</td>
-            <td>$ {expense.toFixed(2)}</td>
-            <td style={{ color: cuenta > 0 ? 'red' : 'blue' }}>
-              {cuenta}{"  :  "}{cuenta > 0 ? "Pagar" : " Recibir"}
-            </td>
-          </tr>
-        );
-      })}
-    </tbody>
-  </table>
-</div>
+        <h3 class="text-center mb-5">Listado de Gastos</h3>
+        <table class="table">
+          <thead>
+            <tr class="text-white">
+              <th>Usuario</th>
+              <th>Gasto</th>
+              <th>Saldo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => {
+              const expense = expensesByUser[user._id] || 0
+              const cuenta = getCuentaByUser(user._id, expense)
+              return (
+                <tr key={user._id} class="text-white">
+                  <td>{user.username}</td>
+                  <td>$ {expense.toFixed(2)}</td>
+                  <td style={{ color: cuenta > 0 ? 'red' : 'blue' }}>
+                    {cuenta}
+                    {'  :  '}
+                    {cuenta > 0 ? 'Pagar' : ' Recibir'}
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
 
       {allExpenses.map((eachExpense) => {
         return (
-  <div key={eachExpense._id} className="d-flex justify-content-between align-items-center mb-2">
-    <div className="flex-grow-1">
-      <p className="mb-0">
-        <strong>{getUsernameById(eachExpense.id_user)}</strong>: {eachExpense.item} :{' '}
-        {eachExpense.ammount.toFixed(2)} 
-      </p>
-    </div>
-    <div>
-      <button
-        className="btn btn-danger"
-        onClick={() => handleDeleteExpense(eachExpense._id)}
-      >
-        <span className="icocor1" aria-label="Eliminar">&#10060; </span>
-      </button>
-    </div>
-  </div>
-);
-
+          <div
+            key={eachExpense._id}
+            className="d-flex justify-content-between align-items-center mb-2"
+          >
+            <div className="flex-grow-1">
+              <p className="mb-0">
+                <strong>{getUsernameById(eachExpense.id_user)}</strong>:
+                {eachExpense.item} : {eachExpense.ammount.toFixed(2)}
+              </p>
+            </div>
+            <div>
+              <button
+                className="btn btn-danger"
+                onClick={() => handleDeleteExpense(eachExpense._id)}
+              >
+                <span className="icocor1" aria-label="Eliminar">
+                  &#10060;
+                </span>
+              </button>
+            </div>
+          </div>
+        )
       })}
     </div>
   )

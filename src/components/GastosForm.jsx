@@ -50,7 +50,6 @@ function GastosForm(props) {
           <div class="input-group mb-3">
             <span class="input-group-text">$</span>
             <input
-             
               class="form-control"
               type="number"
               className="form-control"

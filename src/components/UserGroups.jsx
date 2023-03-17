@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { getUserGroupsService } from '../services/groups.services';
+import React, { useState, useEffect } from 'react'
+import { getUserGroupsService } from '../services/groups.services'
 
 function UserGroups(props) {
-  const [groups, setGroups] = useState([]);
+  const [groups, setGroups] = useState([])
 
   useEffect(() => {
     const fetchGroups = async () => {
       try {
-        const response = await getUserGroupsService(props.userId);
-        console.log("Jojoto",response.data)
-        setGroups(response.data);
+        const response = await getUserGroupsService(props.userId)
+        console.log('Jojoto', response.data)
+        setGroups(response.data)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    };
-    fetchGroups();
-  }, [props.userId]);
+    }
+    fetchGroups()
+  }, [props.userId])
 
   return (
     <div>
@@ -30,7 +30,7 @@ function UserGroups(props) {
         </ul>
       )}
     </div>
-  );
+  )
 }
 
-export default UserGroups;
+export default UserGroups

@@ -5,14 +5,13 @@ body {
     to bottom right,
     rgb(28, 84, 60),
     rgb(2, 30, 25)
-    
   );
 }
 
-.container{
+.container {
   padding: 25px;
 }
-.Card{
+.Card {
   background-color: rgb(4, 48, 42);
 }
 .App {
